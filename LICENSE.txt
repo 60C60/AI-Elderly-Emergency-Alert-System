@@ -7,3 +7,10 @@ Copyright (c) 2024
 上記の著作権表示とこの許可通知は、ソフトウェアのすべてのコピーまたは重要な部分に含まれる必要があります。
 
 ソフトウェアは「現状のまま」提供され、明示または黙示を問わず、商品性、特定目的への適合性、および非侵害の保証を含むがこれに限定されない、いかなる種類の保証もなしに提供されます。いかなる場合にも、著作者または著作権者は、使用に起因または関連して生じたいかなる請求、損害賠償またはその他の責任についても、契約、不法行為またはその他の手段により責任を負わないものとします。
+
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, and to permit persons to whom the software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the software.
+
+The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
