@@ -112,14 +112,13 @@ camera = cv2.VideoCapture(camera_number)
 paused = False
 
 async def detect_error(gmail_address):
-    
     global error_count
 
-    for i in range(1000000):
+    while True:  # 無限ループ
         if paused:
-            await asyncio.sleep(1)
+            await asyncio.sleep(0.5)  # 0.5秒待機
             continue
-    
+
         filename = await take_photo()
         class_name = await process_image(filename)
         print("Class:", class_name[2:])
@@ -140,6 +139,7 @@ async def detect_error(gmail_address):
             error_count = 0
             print('異常なし')
             print(error_count)
+
 
 async def take_photo(filename='input_photo.jpg'):
     return_value, image = camera.read()
