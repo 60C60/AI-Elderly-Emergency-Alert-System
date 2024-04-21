@@ -3,7 +3,7 @@
 
 **![](https://lh7-us.googleusercontent.com/Dtkq6wnDS8QQn93AcJd_wP4oDmzrfZfXeLC_-vwLTux5sFtIHBjO5F8Bh1dJHjjfqTx0EH8ph4T3ezxOpiUFoYFp0ke1NlF7gypYD5zttpEnXMx_KzK41EYewPRahTaAlnkMIwdI4SrotIF0Hbkb8bs)**
 
-### システム名　mimamoru ai(みまもるあい)
+**システム名　mimamoru ai(みまもるあい)**
 
 ひとり暮らしの高齢者向け見守りカメラシステム
 
