@@ -1,7 +1,22 @@
-**ＭＩＭＡＭＯＲＵ ＡＩ  AI画像認識による高齢者見守りシステム**
+**ＭＩＭＡＭＯＲＵ ＡＩ**  
+**AI画像認識による高齢者見守りシステム**
 
 
 **![](https://lh7-us.googleusercontent.com/Dtkq6wnDS8QQn93AcJd_wP4oDmzrfZfXeLC_-vwLTux5sFtIHBjO5F8Bh1dJHjjfqTx0EH8ph4T3ezxOpiUFoYFp0ke1NlF7gypYD5zttpEnXMx_KzK41EYewPRahTaAlnkMIwdI4SrotIF0Hbkb8bs)**
+
+### システム名　mimamoru ai(みまもるあい)
+
+ひとり暮らしの高齢者向け見守りカメラシステム
+
+高齢者が倒れたことをAIが検知し、あらかじめ登録しているメールアドレスに通知(写真)を送信
+
+*※このプロジェクトは進行中です*
+
+## DEMO
+
+追加予定
+
+
 
 
 
@@ -43,6 +58,10 @@ iii.緊急時のメールアドレス設定
 5,ウェブぺージにメールアドレスを入力
 
 # 3. 必要ライブラリのインストール
+動作確認　python3.11
+
+必要ライブラリ
+
 opencv-python
 
 Flask
