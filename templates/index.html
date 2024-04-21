@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>異常検知システムβ</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .header {
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #007bff; /* ヘッダーカードの背景色 */
+            border-radius: 20px; /* ボーダーの丸み */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* 影の設定 */
+        }
+        .header h1 {
+            margin: 0; /* ヘッダーの余白を消去 */
+            font-size: 36px; /* ヘッダータイトルのサイズ */
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto; /* タイトルカードの上に余白を作成 */
+            padding: 0 20px; /* 左右の余白を追加 */
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .form-container, .photo-container, .class-name, .title-container {
+            margin-bottom: 30px;
+        }
+        .form-container h2, .photo-container h2, .class-name h2, .title-container h2 {
+            margin-bottom: 20px;
+            font-size: 26px; /* タイトルのフォントサイズを大きく */
+            color: #007bff;
+            font-family: Arial, sans-serif;
+        }
+        label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type=email] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+        input[type=email]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        img:hover {
+            transform: scale(1.05);
+        }
+        .class-name {
+            text-align: center;
+            font-size: 36px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #555;
+        }
+        .class-name p {
+            font-size: 52px;
+            margin-top: 10px; /* クラス名の上部の余白を追加 */
+        }
+        .hidden {
+            display: none;
+        }
+        .photo-container, .class-name {
+            text-align: center;
+        }
+
+        .photo-container img, .class-name img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            max-width: 100%; /* 修正: 画像がコンテナ幅に収まるように設定 */
+            max-height: 100vh; /* 高さをビューポートの高さに制限 */
+            object-fit: contain; /* アスペクト比を維持してコンテナ内に収まるように設定 */
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px; /* 小さいデバイス用の余白を調整 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card title-container">
+            <h2 style="text-align: center;">異常検知システムβ</h2>
+        </div>
+        <div class="card form-container" id="formContainer">
+            <h2>フォーム</h2>
+            <form id="emailForm">
+                <label for="gmail_name">Gmail アドレス:</label>
+                <input type="email" id="gmail_name" name="gmail_name" required>
+                <br><br>
+                <button type="submit">検知開始</button>
+            </form>
+        </div>
+        <div class="card photo-container" id="photoContainer" style="display:none;">
+            <h2>写真 & クラス名</h2>
+            <div class="class-name">
+                <img id="live_photo" src="/photo" alt="リアルタイム写真">
+                <p id="class_name">クラス名:</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">鹿児島中央高校探究60c60班</div>
+
+    <script>
+        const form = document.getElementById('emailForm');
+        const formContainer = document.getElementById('formContainer');
+        const photoContainer = document.getElementById('photoContainer');
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault(); // デフォルトのフォーム送信を防止
+
+            // Gmailフィールドをフェードアウトするアニメーションを追加
+            formContainer.style.transition = 'opacity 0.5s ease';
+            formContainer.style.opacity = '0';
+            setTimeout(function() {
+                formContainer.classList.add('hidden');
+                photoContainer.style.display = 'block';
+            }, 500); // アニメーションの期間に合わせてタイムアウト値を調整
+
+            // フォームデータを取得
+            const formData = new FormData(form);
+            
+            // サーバーにデータを送信
+            try {
+                const response = await fetch('/detect_error', {
+                    method: 'POST',
+                    body: formData
+                });
+                if (!response.ok) {
+                    throw new Error('サーバーエラー');
+                }
+            } catch (error) {
+                console.error('エラー:', error.message);
+            }
+        });
+
+        // 写真とクラス名をリアルタイムで更新する
+        setInterval(async function() {
+            const image = document.getElementById('live_photo');
+            const className = document.getElementById('class_name');
+
+            // リアルタイム写真を更新
+            const timestamp = new Date().getTime();
+            image.src = `/photo?t=${timestamp}`;
+
+            // サーバーからクラス名を取得して更新
+            const response = await fetch('/get_data');
+            const data = await response.json();
+            className.textContent = `${data.class_name}`;
+        }, 500);
+    </script>
+</body>
+</html>
+
+
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Button</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #controlButton {
+		    padding: 5px 30px;
+            background-color: #999;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0px auto; 
+        }
+        #controlButton:hover {
+            background-color: #666;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="controlButtonContainer">
+        <button id="controlButton" onclick="toggleExecution()">停止</button>
+    </div>
+    <script>
+        function toggleExecution() {
+            var buttonText = document.getElementById("controlButton").textContent;
+            var newButtonText = buttonText === "停止" ? "再開" : "停止";
+            document.getElementById("controlButton").textContent = newButtonText;
+            
+            // ボタンの状態をサーバーに送信し、プログラムの実行を制御する
+            $.ajax({
+                type: "POST",
+                url: "/toggle_execution",
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
