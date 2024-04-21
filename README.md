@@ -35,7 +35,7 @@ iii.緊急時のメールアドレス設定
 
 　※詳しい設定方法は[アプリ パスワードでログインする - Gmail ヘルプ (google.com)](https://support.google.com/mail/answer/185833?hl=ja)を確認
 
-3,プログラムを実行する
+3,プログラムを実行する(execution code.py)
 
 4,表示されたURLにアクセス
 
