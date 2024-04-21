@@ -1,5 +1,4 @@
-**ＭＩＭＡＭＯＲＵ ＡＩ**  
-**AI画像認識による高齢者見守りシステム**
+# AI-Elderly-Emergency-Alert-System  
 
 
 **![](https://lh7-us.googleusercontent.com/Dtkq6wnDS8QQn93AcJd_wP4oDmzrfZfXeLC_-vwLTux5sFtIHBjO5F8Bh1dJHjjfqTx0EH8ph4T3ezxOpiUFoYFp0ke1NlF7gypYD5zttpEnXMx_KzK41EYewPRahTaAlnkMIwdI4SrotIF0Hbkb8bs)**
