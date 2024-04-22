@@ -9,6 +9,8 @@
 
 高齢者が倒れたことをAIが検知し、あらかじめ登録しているメールアドレスに通知(写真)を送信
 
+https://github.com/60C60/AI-Elderly-Emergency-Alert-System
+
 *※このプロジェクトは進行中です*
 
 ## DEMO
