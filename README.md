@@ -1,6 +1,7 @@
 # AI-Elderly-Emergency-Alert-System  
 
 
+
 **![](https://lh7-us.googleusercontent.com/Dtkq6wnDS8QQn93AcJd_wP4oDmzrfZfXeLC_-vwLTux5sFtIHBjO5F8Bh1dJHjjfqTx0EH8ph4T3ezxOpiUFoYFp0ke1NlF7gypYD5zttpEnXMx_KzK41EYewPRahTaAlnkMIwdI4SrotIF0Hbkb8bs)**
 
 **システム名　mimamoru ai(みまもるあい)**
@@ -9,7 +10,7 @@
 
 高齢者が倒れたことをAIが検知し、あらかじめ登録しているメールアドレスに通知(写真)を送信
 
-(https://github.com/60C60/AI-Elderly-Emergency-Alert-System)
+[AI-Elderly-Emergency-Alert-System(github)](https://github.com/60C60/AI-Elderly-Emergency-Alert-System)
 
 *※このプロジェクトは進行中です*
 
