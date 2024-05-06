@@ -38,7 +38,8 @@ def highlight_image_difference(image_path_a, image_path_b, output_path, threshol
     mask = cv2.cvtColor(thresholded, cv2.COLOR_GRAY2BGR)
 
     # 差異がない部分を白色にする
-    new_image = np.where(mask == 255, image_b, (255, 255, 255))
+    new_image = np.where(mask == 255, image_b, (192,192,192))#white(255, 255, 255))
+
 
     # 画像を保存
     cv2.imwrite(output_path, new_image)
@@ -122,7 +123,6 @@ async def detect_error(gmail_address):
         filename = await take_photo()
         class_name = await process_image(filename)
         print("Class:", class_name[2:])
-        
         response = make_response(jsonify({"result": class_name, "image_path": filename}))
         yield response
 
@@ -166,6 +166,7 @@ async def process_image(filename):
     return class_name
 
 async def send_email(receiver_email, filename):
+    filename = 'input_photo.jpg'
     sender_email = 'your_email@gmail.com' #送信元のgmailメールアドレスを設定
     password = 'your_password' #アプリパスワード入力
 
@@ -178,7 +179,7 @@ async def send_email(receiver_email, filename):
     msg.attach(body)
 
     img_data = open(filename, 'rb').read()
-    image = MIMEImage(img_data, name='input_image.jpg')
+    image = MIMEImage(img_data, name='異常検知.jpg')
     msg.attach(image)
 
     with smtplib.SMTP('smtp.gmail.com', 587) as server:
