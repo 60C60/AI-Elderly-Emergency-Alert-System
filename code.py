@@ -105,7 +105,7 @@ gmail_address = None
 error_count = 0
 
 # モデルのパス指定
-model = load_model(r"keras_model2.h5", compile=False)
+model = load_model(r"keras_model.h5", compile=False)
 class_names = open(r"labels.txt", "r", encoding="utf-8").readlines()
 
 camera = cv2.VideoCapture(camera_number)
