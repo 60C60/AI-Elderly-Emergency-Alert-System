@@ -11,13 +11,13 @@ from PIL import Image, ImageOps
 from flask import send_file
 from flask import request
 
-
+#FlaskによるWEBページの公開
 app = Flask(__name__)
 
-#使用するカメラ番号(example innercamera=0 outsidecamera=1)
+# 使用するカメラ番号(example innercamera=0 outsidecamera=1)
 camera_number=0
 
-#背景白化画像の生成
+# 背景白化画像の生成
 def highlight_image_difference(image_path_a, image_path_b, output_path, threshold=30):
     # 画像を読み込む
     image_a = cv2.imread(image_path_a)
@@ -38,7 +38,7 @@ def highlight_image_difference(image_path_a, image_path_b, output_path, threshol
     mask = cv2.cvtColor(thresholded, cv2.COLOR_GRAY2BGR)
 
     # 差異がない部分を白色にする
-    new_image = np.where(mask == 255, image_b, (192,192,192))#white(255, 255, 255))
+    new_image = np.where(mask == 255, image_b, (192,192,192)) #white(255, 255, 255)
 
 
     # 画像を保存
@@ -82,7 +82,7 @@ for i in range(15):
 # カメラを解放
 cap.release()
 
-#10～15枚目の平均画像の生成
+# 10～15枚目の平均画像の生成
 # 画像の読み込み
 images = []
 for i in range(11, 16):
@@ -104,7 +104,7 @@ print('average_image')
 gmail_address = None
 error_count = 0
 
-#モデルのパス指定
+# モデルのパス指定
 model = load_model(r"keras_model2.h5", compile=False)
 class_names = open(r"labels.txt", "r", encoding="utf-8").readlines()
 
@@ -115,7 +115,7 @@ paused = False
 async def detect_error(gmail_address):
     global error_count
 
-    while True:  # 無限ループ
+    while True:  # ループ
         if paused:
             await asyncio.sleep(0.5)  # 0.5秒待機
             continue
@@ -199,7 +199,8 @@ async def detect_error_route():
     global gmail_address
     gmail_address = request.form['gmail_name']
     return await asyncio.gather(*[response async for response in detect_error(gmail_address)])
-    
+
+# 取得画像保存
 @app.route('/get_data')
 async def get_data():
     image_path = 'photo.jpg'
